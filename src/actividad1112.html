@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Ejercicios</title>
+</head>
+<body>
+    <h1>Ejercicio 1: Verificación de Calificaciones</h1>
+    <div class="container">
+        <input type="number" id="calificacion" placeholder="Digita la calificación (0-100)">
+        <button onclick="verificarCalificacion()">Verificar</button>
+        <button onclick="resetInput('calificacion', 'resultado1')">Resetear</button>
+    </div>
+    <p id="resultado1"></p>
+
+    <h1>Ejercicio 2: Determinación de Número Par o Impar</h1>
+    <div class="container">
+        <input type="number" id="numero" placeholder="Digita un número">
+        <button onclick="determinarParidad()">Determinar</button>
+        <button onclick="resetInput('numero', 'resultado2')">Resetear</button>
+    </div>
+    <p id="resultado2"></p>
+
+    <h1>Ejercicio 3: Evaluación de Descuentos</h1>
+    <div class="container">
+        <input type="number" id="monto" placeholder="Digita el total de tu compra">
+        <button onclick="evaluarDescuento()">Calcular</button>
+        <button onclick="resetInput('monto', 'resultado3')">Resetear</button>
+    </div>
+    <p id="resultado3"></p>
+
+    <h1>Ejercicio 4: Juego de Adivinanza de Números</h1>
+    <div class="container">
+        <input type="number" id="adivinanza" placeholder="Digita un número (1-10)">
+        <button onclick="jugarAdivinanza()">Adivinar</button>
+        <button onclick="resetInput('adivinanza', 'resultado4')">Resetear</button>
+    </div>
+    <p id="resultado4"></p>
+
+
+    <script>
+        function verificarCalificacion() {
+            const calificacion = parseInt(document.getElementById("calificacion").value);
+            let mensaje = "";
+
+            if (isNaN(calificacion) || calificacion < 0 || calificacion > 100) {
+                mensaje = "Por favor, introduce una calificación válida entre 0 y 100.";
+            } else if (calificacion >= 90) {
+                mensaje = "Aprobado con honores";
+            } else if (calificacion >= 70) {
+                mensaje = "Aprobado";
+            } else {
+                mensaje = "Reprobado";
+            }
+
+            document.getElementById("resultado1").textContent = mensaje;
+        }
+
+        function determinarParidad() {
+            const numero = parseInt(document.getElementById("numero").value);
+            let mensaje = "";
+
+            if (isNaN(numero)) {
+                mensaje = "Por favor, introduce un número válido.";
+            } else {
+                mensaje = (numero % 2 === 0) ? "El número es par" : "El número es impar";
+            }
+
+            document.getElementById("resultado2").textContent = mensaje;
+        }
+
+        function evaluarDescuento() {
+            const monto = parseFloat(document.getElementById("monto").value);
+            let mensaje = "Monto final a pagar: $";
+
+            if (isNaN(monto) || monto < 0) {
+                mensaje = "Por favor, introduce un monto válido.";
+            } else {
+                let montoFinal = monto > 100 ? monto * 0.9 : monto;
+                mensaje += montoFinal.toFixed(2);
+            }
+
+            document.getElementById("resultado3").textContent = mensaje;
+        }
+
+        function jugarAdivinanza() {
+            const numeroAleatorio = Math.floor(Math.random() * 10) + 1;
+            const adivinanza = parseInt(document.getElementById("adivinanza").value);
+            let mensaje = "";
+
+            if (isNaN(adivinanza) || adivinanza < 1 || adivinanza > 10) {
+                mensaje = "Por favor, introduce un número entre 1 y 10.";
+            } else {
+                mensaje = (adivinanza === numeroAleatorio) ? 
+                          "Adivinaste el número, era " + numeroAleatorio : 
+                          "El número era " + numeroAleatorio;
+            }
+
+            document.getElementById("resultado4").textContent = mensaje;
+        }
+
+        function resetInput(inputId, resultId) {
+            document.getElementById(inputId).value = "";
+            document.getElementById(resultId).textContent = "";
+        }
+    </script>
+</body>
+</html>
