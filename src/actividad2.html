@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorio de Bucles</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Laboratorio de Bucles</h1>
+
+    <h2>Parte 1: Bucle "for"</h2>
+    <input type="text" id="numeros" placeholder="Ejemplo: 1, 2, 3, 4">
+    <button onclick="sumarArreglo()">Calcular Suma</button>
+    <p id="resultado1"></p>
+
+    <h2>Parte 2: Bucle "while"</h2>
+    <button onclick="solicitarNumeros()">Iniciar</button>
+    <p id="resultado2"></p>
+
+    <h2>Parte 3: Bucle "do...while"</h2>
+    <button onclick="verificarContrasena()">Iniciar</button>
+    <p id="resultado3"></p>
+
+    <script>
+        // Parte 1: Bucle "for"
+        function sumarArreglo() {
+            const numerosStr = document.getElementById("numeros").value.split(",");
+            const numeros = numerosStr.map(Number);
+            let suma = 0;
+
+            for (let i = 0; i < numeros.length; i++) {
+                suma += numeros[i];
+            }
+
+            document.getElementById("resultado1").textContent = "Suma total: " + suma;
+
+            const promedio = suma / numeros.length;
+            document.getElementById("resultado1").textContent += " | Promedio: " + promedio.toFixed(2);
+        }
+
+        // Parte 2: Bucle "while"
+        function solicitarNumeros() {
+            let numero;
+            let numerosI = [];
+
+            while (true) {
+                numero = parseInt(prompt("Ingresa un número (para terminar ingresa un numero negativo):"));
+                if (numero < 0) break;
+                numerosI.push(numero);
+            }
+
+            document.getElementById("resultado2").textContent = "Números ingresados: " + numerosI.join(", ");
+        }
+
+        // Parte 3: Bucle "do...while"
+        function verificarContrasena() {
+            const cC = "1234567890";
+            let cI;
+
+            do {
+                cI = prompt("Ingresa contraseña:");
+            } while (cI !== cC);
+
+            document.getElementById("resultado3").textContent = "Contraseña correcta";
+        }
+    </script>
+</body>
+</html>
